@@ -1,5 +1,6 @@
 let boxes = document.querySelectorAll(".box");
 let btn = document.querySelector(".reset");
+let turn = document.querySelector(".circle");
 let turnX = true;
 const win_patterns = [
   ["0", "1", "2"],
@@ -14,10 +15,12 @@ const win_patterns = [
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (turnX) {
-      box.innerText = "O";
+      turn.style.left = "0.7rem";
+      box.innerText = "X";
       turnX = false;
     } else {
-      box.innerText = "X";
+      turn.style.left = "4.7rem";
+      box.innerText = "O";
       turnX = true;
     }
     box.disabled = true;
@@ -38,7 +41,7 @@ boxes.forEach((box) => {
           boxes.forEach((box) => (box.disabled = true));
           if (pos1 === "X") {
             document.querySelector(".result").innerText = "'X' Win";
-          } else if(pos1 === "O") {
+          } else if (pos1 === "O") {
             document.querySelector(".result").innerText = "'O' Win";
           }
         }
@@ -47,7 +50,6 @@ boxes.forEach((box) => {
   });
 });
 btn.addEventListener("click", () => {
-  // location.reload(true);
   boxes.forEach((box) => {
     box.innerText = null;
     box.disabled = false;
